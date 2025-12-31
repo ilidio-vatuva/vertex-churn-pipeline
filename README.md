@@ -54,3 +54,5 @@ Postman collection
 - A Postman collection for local testing is included at `postman/Telecom Churn - Local.postman_collection.json`.
 - Import it into Postman and set the `hostname` variable to `http://127.0.0.1:8000` (or your server address), then run the `Health Check` and `Predict` requests.
 
+NOTE:
+This repo is a learning sandbox to understand the Vertex AI workflow.
