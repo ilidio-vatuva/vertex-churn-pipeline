@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "08fc4400-f21e-4e52-8aa4-745fcce320b6",
+		"name": "Telecom Churn - Local",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16398491"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{hostname}}/health",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Predict",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"threshold\": 0.7,\n    \"instances\": [\n      {\n        \"customer_id\": \"TEST_1\",\n        \"tenure_months\": 1,\n        \"monthly_charges\": 120,\n        \"total_data_gb\": 250,\n        \"support_tickets_30d\": 6,\n        \"late_payments_6m\": 5\n      }\n    ]\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostname}}/predict",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"predict"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \"http://127.0.0.1:8000/predict\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"instances\": [\n      {\n        \"tenure_months\": 12,\n        \"monthly_charges\": 70.5,\n        \"total_data_gb\": 120,\n        \"support_tickets_30d\": 2,\n        \"late_payments_6m\": 1\n      }\n    ]\n  }'"
+			},
+			"response": []
+		},
+		{
+			"name": "Predict By Customer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{hostname}}/predict/C102340?threshold=0.8",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"predict",
+						"C102340"
+					],
+					"query": [
+						{
+							"key": "threshold",
+							"value": "0.8"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl \"http://127.0.0.1:8000/predict/C100123?threshold=0.7\""
+			},
+			"response": []
+		},
+		{
+			"name": "Top Risk",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{hostname}}/top-risk?top_k=50&threshold=0.8",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"top-risk"
+					],
+					"query": [
+						{
+							"key": "top_k",
+							"value": "50"
+						},
+						{
+							"key": "threshold",
+							"value": "0.8"
+						},
+						{
+							"key": "include_all",
+							"value": "true",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Generated from cURL: curl \"http://127.0.0.1:8000/top-risk?top_k=50&threshold=0.7\""
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "hostname",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

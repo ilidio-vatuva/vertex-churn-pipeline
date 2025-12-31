@@ -1,0 +1,26 @@
+# Ignore generated data and models
+data/
+model/
+
+# Environment and package managers
+.env
+.venv/
+venv/
+env/
+.mamba/
+.micromamba/
+
+# Python caches and artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Editor/OS files
+.DS_Store
+.vscode/
+.idea/
+.ipynb_checkpoints/
+
+# Binary artifacts
+*.pkl
